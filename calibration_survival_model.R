@@ -375,7 +375,7 @@ adfun <- function(dat,n.iter,sample_size, nparam_a,nparam_b,nparam_c,nalpha,nbet
       parameters <- list(sigma=c(0,rep(1,nalpha)))  # sigma=c(0,rep(1,nparam_a-1))
       
       obj <- MakeADFun(data,parameters,DLL="la_general", method="L-BFGS-B") 
-      #L-BFGS-B always works for lA when it doesnt work without it, LB works fine for weights
+
       obj$hessian <- TRUE
       opt<-suppressWarnings(do.call("optim",obj))
       parest_a[i,] <- opt$par #parameter estimates
@@ -394,7 +394,7 @@ adfun <- function(dat,n.iter,sample_size, nparam_a,nparam_b,nparam_c,nalpha,nbet
       #model B individual laplace
       data <- list(Xrow=X_sample, N=sample_size, replicates=replicates, dfcost=dfcost, weights=weight,a1=a_est, b1=0, costindexsum=costindexsum, costsum=costsum, start=start)
       
-      parameters <- list(sigma=c(0,1,1,rep(1,nbeta))) #make this modular  use eg nparam_b and rep
+      parameters <- list(sigma=c(0,1,1,rep(1,nbeta))) 
       
       obj <- MakeADFun(data,parameters,DLL="lb_general")
       obj$hessian <- TRUE
