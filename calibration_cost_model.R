@@ -364,7 +364,7 @@ adfun <- function(dat,n.iter,sample_size, nparam_a,nparam_b,nparam_c,nalpha,nbet
       parameters <- list(sigma=c(0,rep(1,nalpha)))  # sigma=c(0,rep(1,nparam_a-1))
       
       obj <- MakeADFun(data,parameters,DLL="la_general", method="L-BFGS-B") 
-      #L-BFGS-B always works for lA when it doesnt work without it, LB works fine for weights
+
       obj$hessian <- TRUE
       opt<-suppressWarnings(do.call("optim",obj))
       parest_a[i,] <- opt$par #parameter estimates
