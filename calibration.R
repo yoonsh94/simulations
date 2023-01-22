@@ -10,7 +10,6 @@ dyn.load(dynlib("lb_general"))
 compile("lc_general.cpp")
 dyn.load(dynlib("lc_general"))
 
-
 sim_data <- function(sigmaA.true, sigmaB.true){
   set.seed(3105)
   # Number of subjects
@@ -1028,8 +1027,6 @@ adfun <- function(dat,n.iter,sample_size, nparam_a,nparam_b,nparam_c,nalpha,nbet
   } #end of for loop
   #return output.
   par <- data.frame(cbind(parest_a,parest_b,parest_c,na_ind_a,na_ind_b,na_ind_c))
-  #for weighted  cbind parest_a.. etc inside the loop
-  #so that this code works unilaterally for all types of analysis
   par_SE <- list(par=par, SE=SE, SE_cals = SE_cals)
   return(par_SE)
 }
@@ -1069,7 +1066,7 @@ sampledata<-lapply(1:n.iter, function(v) samplingfunc(v,df1,n.per.cluster=n.per.
 
 
 jobid = as.numeric(Sys.getenv("SLURM_ARRAY_TASK_ID"))
-typevec <- c("W","CAL")
+typevec <- c("UW","W","CAL")
 sim_cal<-adfun(dat=sampledata,
                n.iter=n.iter,
                sample_size=400, 
