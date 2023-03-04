@@ -37,13 +37,13 @@ sim_data <- function(N){
   Ntotal <-   sum(replicates)
   
   X1 <- rbinom(Ntotal, 1, 0.5)
-  X2 <- rnorm(Ntotal, X1, 0.4) 
-  X3 <- rnorm(Ntotal, X1, 0.3) #X1 is now correlated with X2 and X3
+  X2 <- rnorm(Ntotal, X1, 1.5) 
+  X3 <- rnorm(Ntotal, X1, 0.8) #X1 is now correlated with X2 and X3
   #X <- cbind(1,X1,X2,X3)
   
   #for both binary and normal case?
   Z1 <- rbinom(N, 1, 0.5) #no repeated measure for Z.  Z1 is directly usable in cpp 
-  Z2 <- rnorm(N, Z1, 0.9) 
+  Z2 <- rnorm(N, Z1, 1.5) 
   Z3 <- rnorm(N, Z1, 0.8)
   Z.1 <- Z1[idK]
   X4 <- Z.2 <- Z2[idK] #this is shared with cost models
